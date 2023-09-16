@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.AlarmClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,7 @@ import com.example.implicitintent.databinding.FragmentFirstBinding;
 public class FirstFragment extends Fragment {
 
     private FragmentFirstBinding binding;
-    Button button;
-    EditText url;
+
 
     @Override
     public View onCreateView(
@@ -37,38 +37,6 @@ public class FirstFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
-
-        button = view.findViewById(R.id.button6);
-        url = view.findViewById(R.id.url);
-        button.setOnClickListener(new View.OnClickListener() {
-                    @SuppressLint("QueryPermissionsNeeded")
-                    @Override
-                    public void onClick(View view) {
-                        String urlText = url.getText().toString();
-                        Toast.makeText(getActivity(), urlText, Toast.LENGTH_SHORT).show();
-
-                        Uri webpage = Uri.parse(urlText);
-                        Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
-                        startActivity(intent);
-
-
-//                        Intent intent = new Intent(Intent.ACTION_SEND);
-//                        intent.setType("*/*");
-//                        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
-//                        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
-//                        intent.putExtra(Intent.EXTRA_STREAM, attachment);
-//                        if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
-//                            startActivity(intent);
-//                        }
-                    }
-                });
     }
 
     @Override
